@@ -46,7 +46,7 @@
 		"@types/lodash.template": "^4.5.3",
 		"@types/mdast": "^4.0.4",
 		"acorn": "^8.15.0",
-		"bits-ui": "^2.11.0",
+		"bits-ui": "^2.11.4",
 		"chrono-node": "^2.8.4",
 		"clsx": "^2.1.1",
 		"consola": "^3.4.2",
