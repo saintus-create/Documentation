@@ -1,11 +1,13 @@
 <script lang="ts">
-	import CalendarIcon from "@lucide/svelte/icons/calendar";
-	import ChevronUpIcon from "@lucide/svelte/icons/chevron-up";
-	import HouseIcon from "@lucide/svelte/icons/house";
-	import InboxIcon from "@lucide/svelte/icons/inbox";
-	import SearchIcon from "@lucide/svelte/icons/search";
-	import SettingsIcon from "@lucide/svelte/icons/settings";
-	import UserIcon from "@lucide/svelte/icons/user";
+	import {
+		Calendar as CalendarIcon,
+		ChevronUp as ChevronUpIcon,
+		House as HouseIcon,
+		Inbox as InboxIcon,
+		Search as SearchIcon,
+		Settings as SettingsIcon,
+		User as UserIcon,
+	} from "@lucide/svelte";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
 	import { LightSwitch } from "$lib/components/ui/light-switch";
