@@ -2,10 +2,6 @@
 	"name": "@shadcn-svelte/monorepo",
 	"version": "0.0.1",
 	"description": "monorepo for shadcn-svelte",
-	"author": {
-		"name": "huntabyte",
-		"url": "https://twitter.com/huntabyte"
-	},
 	"private": true,
 	"scripts": {
 		"build": "pnpm build:docs",
@@ -32,7 +28,7 @@
 	"packageManager": "pnpm@10.12.1",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/huntabyte/shadcn-svelte.git"
+		"url": "https://github.com/saintus-create/Documentation.git"
 	},
 	"license": "MIT",
 	"type": "module",
