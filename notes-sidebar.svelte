@@ -23,7 +23,7 @@
 	{...restProps}
 >
 	<Sidebar.Content class="no-scrollbar overflow-x-hidden px-2 pb-12">
-		<div class="h-(--top-spacing) shrink-0"></div>
+		<div class="h-[--top-spacing] shrink-0"></div>
 		{#each navItems as item (item.title)}
 			<Sidebar.Group>
 				<Sidebar.GroupLabel class="text-muted-foreground font-medium">
@@ -42,7 +42,7 @@
 											{#snippet child({ props })}
 												<a href={subItem.href} {...props}>
 													<span
-														class="w-(--sidebar-width) absolute inset-0 flex bg-transparent"
+														class="w-[--sidebar-width] absolute inset-0 flex bg-transparent"
 													></span>
 													{subItem.title}
 													{#if subItem.indicator === "new"}
