@@ -1,7 +1,7 @@
 {
-    "buildCommand": "cd docs && npm install && npm run build",
-    "outputDirectory": "docs/.svelte-kit",
-    "installCommand": "npm install --prefix docs",
+    "buildCommand": "npm --prefix docs run build",
+    "outputDirectory": "docs/build",
+    "installCommand": "npm --prefix docs install",
     "framework": null,
     "ignoreCommand": "git diff --quiet HEAD^ HEAD ./docs"
 }
