@@ -10,7 +10,9 @@ const config = {
 	extensions: [".svelte", ".md"],
 
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({
+			runtime: 'nodejs22.x'
+		}),
 		prerender: {
 			handleMissingId: (details) => {
 				if (details.id === "#") return;
