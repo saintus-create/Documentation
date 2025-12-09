@@ -29,6 +29,8 @@ export default defineConfig({
 		visualizer({
 			emitFile: true,
 			filename: "stats.html",
+			gzipSize: true,
+			brotliSize: true,
 		}),
 		tailwindcss(),
 		enhancedImages(),
@@ -50,14 +52,79 @@ export default defineConfig({
 		},
 	},
 	build: {
-		// minify: false,
-		rollupOptions: {
-			output: {
-				manualChunks: {
-					icons: ["@lucide/svelte", "@tabler/icons-svelte"],
-				},
+		target: "esnext",
+		minify: "terser",
+		cssMinify: "lightningcss",
+		terserOptions: {
+			compress: {
+				drop_console: true,
+				drop_debugger: true,
+				pure_funcs: ["console.log", "console.info", "console.debug"],
+			},
+			format: {
+				comments: false,
 			},
 		},
+		rollupOptions: {
+			output: {
+				manualChunks: (id) => {
+					// Vendor chunks
+					if (id.includes("node_modules")) {
+						// Icons
+						if (id.includes("@lucide/svelte") || id.includes("@tabler/icons-svelte")) {
+							return "icons";
+						}
+						// UI Libraries
+						if (id.includes("bits-ui") || id.includes("formsnap") || id.includes("mode-watcher")) {
+							return "ui-libs";
+						}
+						// Charts
+						if (id.includes("layerchart") || id.includes("d3-")) {
+							return "charts";
+						}
+						// Carousel/DND
+						if (id.includes("embla-carousel") || id.includes("@dnd-kit")) {
+							return "interactions";
+						}
+						// Form handling
+						if (id.includes("sveltekit-superforms") || id.includes("zod")) {
+							return "forms";
+						}
+						// Utilities
+						if (
+							id.includes("clsx") ||
+							id.includes("tailwind-merge") ||
+							id.includes("tailwind-variants")
+						) {
+							return "utils";
+						}
+						// Everything else from node_modules
+						return "vendor";
+					}
+					// Registry components
+					if (id.includes("/registry/")) {
+						return "registry";
+					}
+				},
+				chunkFileNames: "chunks/[name]-[hash].js",
+				entryFileNames: "entries/[name]-[hash].js",
+				assetFileNames: "assets/[name]-[hash].[ext]",
+			},
+		},
+		sourcemap: false,
+		reportCompressedSize: true,
+		chunkSizeWarningLimit: 1000,
+	},
+	optimizeDeps: {
+		include: [
+			"@lucide/svelte",
+			"bits-ui",
+			"clsx",
+			"tailwind-merge",
+			"tailwind-variants",
+			"mode-watcher",
+		],
+		exclude: ["@sveltejs/kit"],
 	},
 	ssr: {
 		noExternal: Object.keys(packageJson.devDependencies),
