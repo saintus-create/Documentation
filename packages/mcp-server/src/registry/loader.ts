@@ -1,4 +1,4 @@
-import { readFileSync } from 'fs';
+import { readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { Registry, RegistrySchema, RegistryItemSchema } from './types.js';
@@ -17,8 +17,27 @@ export function loadRegistry(): Registry {
     }
 
     try {
-        // Navigate from packages/mcp-server/src/registry to docs/registry.json
-        const registryPath = join(__dirname, '../../../../docs/registry.json');
+        // Navigate to docs/registry.json
+        // Try multiple paths to handle both src (dev) and dist (prod) environments
+        const candidates = [
+            join(__dirname, '../../../../docs/registry.json'), // From src/registry/loader.ts
+            join(__dirname, '../../../docs/registry.json'),    // From dist/index.js
+            join(process.cwd(), 'docs/registry.json')          // From project root
+        ];
+
+        let registryPath = '';
+
+        for (const candidate of candidates) {
+            if (existsSync(candidate)) {
+                registryPath = candidate;
+                break;
+            }
+        }
+
+        if (!registryPath) {
+            throw new Error(`Registry file not found. Checked: ${candidates.join(', ')}`);
+        }
+
         const content = readFileSync(registryPath, 'utf-8');
         const rawData = JSON.parse(content);
 

@@ -1,0 +1,14 @@
+{
+    "mcpServers": {
+        "shadcn-svelte": {
+            "command": "node",
+            "args": [
+                "/Users/2024-jan/ss/Documentation/packages/mcp-server/dist/index.js"
+            ],
+            "env": {
+                "PATH": "/Users/2024-jan/.nvm/versions/node/v20.19.5/bin:$PATH"
+            },
+            "alwaysAllow": []
+        }
+    }
+}

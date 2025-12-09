@@ -1,0 +1,20 @@
+{
+    "mcpServers": {
+        "shadcn-svelte": {
+            "command": "/usr/local/bin/node",
+            "args": [
+                "/Users/2024-jan/ss/Documentation/packages/mcp-server/dist/index.js"
+            ]
+        },
+        "notion": {
+            "command": "/usr/local/bin/npx",
+            "args": [
+                "-y",
+                "@notionhq/mcp-server"
+            ],
+            "env": {
+                "NOTION_API_KEY": "${NOTION_API_KEY}"
+            }
+        }
+    }
+}
